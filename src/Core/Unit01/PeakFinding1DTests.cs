@@ -6,10 +6,13 @@ namespace Core.Unit01
 {
     public class PeakFinding1DTests
     {
-        [Fact]
-        public void ShouldNotFindPeakGivenNoElements()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void ShouldNotFindPeakGivenNoElements(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             var peek = peakFinding1D.FindPeek(
                 new int[0]);
@@ -17,10 +20,13 @@ namespace Core.Unit01
             peek.Should().NotHaveValue();
         }
 
-        [Fact]
-        public void ShouldReturnNumberGivenSingleItmeInArray()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void ShouldReturnNumberGivenSingleItmeInArray(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             var peek = peakFinding1D.FindPeek(
                 new int[] { 1 });
@@ -29,10 +35,13 @@ namespace Core.Unit01
             peek.Should().Be(1);
         }
 
-        [Fact]
-        public void ShouldReturnLargerNumberGivenTwoLenghtArray()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void ShouldReturnLargerNumberGivenTwoLenghtArray(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             int? peek;
 
@@ -49,10 +58,13 @@ namespace Core.Unit01
             peek.Should().Be(2);
         }
 
-        [Fact]
-        public void ShouldReturnNumberGivenTwoLengthArrayWithSameValues()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void ShouldReturnNumberGivenTwoLengthArrayWithSameValues(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             var peek = peakFinding1D.FindPeek(
                 new int[] { 2, 2 });
@@ -61,10 +73,13 @@ namespace Core.Unit01
             peek.Should().Be(2);
         }
 
-        [Fact]
-        public void ShouldFindPeekWhenMiddleIsLargestGiven3LengthArray()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void ShouldFindPeekWhenMiddleIsLargestGiven3LengthArray(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             var peek = peakFinding1D.FindPeek(
                 new int[] { 1, 2, 1 });
@@ -73,10 +88,13 @@ namespace Core.Unit01
             peek.Should().Be(2);
         }
 
-        [Fact]
-        public void RandomTest01()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void RandomTest01(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             var peek = peakFinding1D.FindPeek(
                 new int[] { 1, 2, 3, 2, 1 });
@@ -85,10 +103,13 @@ namespace Core.Unit01
             peek.Should().Be(3);
         }
 
-        [Fact]
-        public void RandomTest02()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void RandomTest02(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             var peek = peakFinding1D.FindPeek(
                 new int[] { 1, 2, 3, 1, 4, 2, 1 });
@@ -100,10 +121,13 @@ namespace Core.Unit01
             validPeeks.Any(v => v == peek.Value).Should().BeTrue();
         }
 
-        [Fact]
-        public void RandomTest03()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void RandomTest03(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             var peek = peakFinding1D.FindPeek(
                 new int[] { 1, 3, 3, 3, 1, 10, 10, 10, 1 });
@@ -115,10 +139,13 @@ namespace Core.Unit01
             validPeeks.Any(v => v == peek.Value).Should().BeTrue();
         }
 
-        [Fact]
-        public void RandomTest04()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void RandomTest04(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             var peek = peakFinding1D.FindPeek(
                 new int[] { 10, 0, 0, 1 });
@@ -130,10 +157,13 @@ namespace Core.Unit01
             validPeeks.Any(v => v == peek.Value).Should().BeTrue();
         }
 
-        [Fact]
-        public void RandomTest05()
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void RandomTest05(
+            PeakFinding1D.AlgoType algoType)
         {
-            var peakFinding1D = new PeakFinding1D();
+            var peakFinding1D = new PeakFinding1D(algoType);
 
             var peek = peakFinding1D.FindPeek(
                 new int[] { 1, 4, 4, 6, 7, 6, 3, 3, 1 });
