@@ -174,5 +174,105 @@ namespace Core.Unit01
 
             validPeeks.Any(v => v == peek.Value).Should().BeTrue();
         }
+
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void RandomTest06(
+            PeakFinding1D.AlgoType algoType)
+        {
+            var peakFinding1D = new PeakFinding1D(algoType);
+
+            var peek = peakFinding1D.FindPeek(
+                new int[] { 1, 2, 3, 4, 10, 9, 8, 7, 8, 9, 10, 4,3 ,2, 1, });
+
+            peek.Should().HaveValue();
+
+            var validPeeks = new int[] { 10 };
+
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void RandomTest07(
+            PeakFinding1D.AlgoType algoType)
+        {
+            var peakFinding1D = new PeakFinding1D(algoType);
+
+            int? peek;
+            int[] validPeeks;
+
+            peek = peakFinding1D.FindPeek(new int[] { 1, 2, 3, 4, 10, 9, 10, 4, 3, 2, 1, });
+            peek.Should().HaveValue();
+            validPeeks = new int[] { 10 };
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+
+            peek = peakFinding1D.FindPeek(new int[] { 1, 2, 3, 4, 11, 9, 10, 4, 3, 2, 1, });
+            peek.Should().HaveValue();
+            validPeeks = new int[] { 10, 11 };
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+
+            peek = peakFinding1D.FindPeek(new int[] { 1, 2, 3, 4, 10, 9, 11, 4, 3, 2, 1, });
+            peek.Should().HaveValue();
+            validPeeks = new int[] { 10, 11 };
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void RandomTest08(
+            PeakFinding1D.AlgoType algoType)
+        {
+            var peakFinding1D = new PeakFinding1D(algoType);
+
+            int? peek;
+            int[] validPeeks;
+
+            peek = peakFinding1D.FindPeek(new int[] { 1, 2, 3, 4, 10, 9, 10, 4, 3, 2, 1, 0 });
+            peek.Should().HaveValue();
+            validPeeks = new int[] { 10 };
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+
+            peek = peakFinding1D.FindPeek(new int[] { 1, 2, 3, 4, 11, 9, 10, 4, 3, 2, 1, 0 });
+            peek.Should().HaveValue();
+            validPeeks = new int[] { 10, 11 };
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+
+            peek = peakFinding1D.FindPeek(new int[] { 1, 2, 3, 4, 10, 9, 11, 4, 3, 2, 1, 0 });
+            peek.Should().HaveValue();
+            validPeeks = new int[] { 10, 11 };
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData(PeakFinding1D.AlgoType.Slow)]
+        [InlineData(PeakFinding1D.AlgoType.Faster)]
+        public void RandomTest09(
+            PeakFinding1D.AlgoType algoType)
+        {
+            var peakFinding1D = new PeakFinding1D(algoType);
+
+            int? peek;
+            int[] validPeeks;
+
+            peek = peakFinding1D.FindPeek(new int[] { 0, 1, 2, 3, 4, 10, 9, 10, 4, 3, 2, 1 });
+            peek.Should().HaveValue();
+            validPeeks = new int[] { 10 };
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+
+            peek = peakFinding1D.FindPeek(new int[] { 0, 1, 2, 3, 4, 11, 9, 10, 4, 3, 2, 1 });
+            peek.Should().HaveValue();
+            validPeeks = new int[] { 10, 11 };
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+
+            peek = peakFinding1D.FindPeek(new int[] { 0, 1, 2, 3, 4, 10, 9, 11, 4, 3, 2, 1 });
+            peek.Should().HaveValue();
+            validPeeks = new int[] { 10, 11 };
+            validPeeks.Any(v => v == peek.Value).Should().BeTrue();
+        }
+
     }
 }
