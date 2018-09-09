@@ -20,8 +20,11 @@
                     if (numbers[i] >= numbers[i - 1])
                         return numbers[i];
                 }
-                else if (numbers[i] >= numbers[i - 1] && numbers[i] >= numbers[i + 1])
+                else if (numbers[i] >= numbers[i - 1]
+                         && numbers[i] >= numbers[i + 1])
+                {
                     return numbers[i];
+                }
             }
 
             return null;
