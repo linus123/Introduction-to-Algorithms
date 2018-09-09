@@ -88,7 +88,7 @@
                     return GetValue(x, y);
                 }
 
-                return _grid[adjustedY, x];
+                return GetValue(x, adjustedY);
             }
 
             public int GetBelowValue(int x, int y)
@@ -100,7 +100,7 @@
                     return GetValue(x, y);
                 }
 
-                return _grid[adjustedY, x];
+                return GetValue(x, adjustedY);
             }
 
             public int GetLeftValue(int x, int y)
@@ -112,7 +112,7 @@
                     return GetValue(x, y);
                 }
 
-                return _grid[y, adjustedX];
+                return GetValue(adjustedX, y);
             }
 
             public int GetRightValue(int x, int y)
@@ -124,7 +124,7 @@
                     return GetValue(x, y);
                 }
 
-                return _grid[y, adjustedX];
+                return GetValue(adjustedX, y);
             }
 
             public bool IsPeak(
