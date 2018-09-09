@@ -17,6 +17,12 @@
 
         public int FindPeek(int[,] array2D)
         {
+            return FindPeakBruteForce(array2D);
+        }
+
+        private static int FindPeakBruteForce(
+            int[,] array2D)
+        {
             var grid = new Grid(array2D);
 
             for (int y = 0; y < grid.Height; y++)
