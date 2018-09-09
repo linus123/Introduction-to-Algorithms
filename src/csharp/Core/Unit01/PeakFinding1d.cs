@@ -4,7 +4,7 @@ namespace Core.Unit01
 {
     public class PeakFinding1D
     {
-        private AlgoType _algoType;
+        private readonly AlgoType _algoType;
 
         public enum AlgoType
         {
