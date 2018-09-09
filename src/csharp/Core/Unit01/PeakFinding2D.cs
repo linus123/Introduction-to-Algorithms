@@ -15,20 +15,20 @@
             _algoType = algoType;
         }
 
-        public int FindPeek(int[,] grid)
+        public int FindPeek(int[,] array2D)
         {
-            var grd = new Grid(grid);
+            var grid = new Grid(array2D);
 
-            for (int y = 0; y < grd.Height; y++)
+            for (int y = 0; y < grid.Height; y++)
             {
-                for (int x = 0; x < grd.Width; x++)
+                for (int x = 0; x < grid.Width; x++)
                 {
-                    if (grd.IsPeak(x, y))
-                        return grd.GetValue(x, y);
+                    if (grid.IsPeak(x, y))
+                        return grid.GetValue(x, y);
                 }
             }
 
-            return grid[0, 0];
+            return grid.GetValue(0, 0);
         }
 
         private class Grid
