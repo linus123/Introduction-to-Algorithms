@@ -19,12 +19,6 @@
         {
             var grd = new Grid(grid);
 
-            if (grd.Width <= 2
-                && grd.Height <= 2)
-            {
-                return grd.GetMaxValue();
-            }
-
             for (int y = 0; y < grd.Height; y++)
             {
                 for (int x = 0; x < grd.Width; x++)
@@ -57,29 +51,12 @@
                 get { return _grid.GetLength(1); }
             }
 
-            public int GetMaxValue()
-            {
-                int max = int.MinValue;
-
-                for (int x = 0; x < _grid.GetLength(1); x++)
-                {
-                    for (int y = 0; y < _grid.GetLength(0); y++)
-                    {
-                        if (_grid[y, x] > max)
-                            max = _grid[y, x];
-                    }
-                }
-
-                return max;
-
-            }
-
             public int GetValue(int x, int y)
             {
                 return _grid[y, x];
             }
 
-            public int GetAboveValue(int x, int y)
+            private int GetAboveValue(int x, int y)
             {
                 var adjustedY = y - 1;
 
@@ -91,11 +68,11 @@
                 return GetValue(x, adjustedY);
             }
 
-            public int GetBelowValue(int x, int y)
+            private int GetBelowValue(int x, int y)
             {
                 var adjustedY = y + 1;
 
-                if (adjustedY > Height)
+                if (adjustedY >= Height)
                 {
                     return GetValue(x, y);
                 }
@@ -103,7 +80,7 @@
                 return GetValue(x, adjustedY);
             }
 
-            public int GetLeftValue(int x, int y)
+            private int GetLeftValue(int x, int y)
             {
                 var adjustedX = x - 1;
 
@@ -115,11 +92,11 @@
                 return GetValue(adjustedX, y);
             }
 
-            public int GetRightValue(int x, int y)
+            private int GetRightValue(int x, int y)
             {
                 var adjustedX = x + 1;
 
-                if (adjustedX > Width)
+                if (adjustedX >= Width)
                 {
                     return GetValue(x, y);
                 }
