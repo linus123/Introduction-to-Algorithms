@@ -5,6 +5,20 @@ import peak
 
 class Algo1Tests(unittest.TestCase):
 
+    def runPeak(self, grid, size, expected_value, expected_location):
+
+        (width, height) = size
+
+        problem = peak.PeakProblem(grid, (0, 0, width, height))
+
+        peek_location = algorithms.algorithm1(problem)
+
+        is_peak = problem.isPeak(peek_location)
+
+        self.assertEqual(True, is_peak)
+        self.assertEqual(expected_value, problem.get(peek_location))
+        self.assertEqual(expected_location, peek_location)
+
     def test_001(self):
         """
         Should return only value given 1 x 1 grid.
@@ -12,16 +26,10 @@ class Algo1Tests(unittest.TestCase):
         grid = [
             [1]
         ]
-
-        problem = peak.PeakProblem(grid, (0, 0, 1, 1))
-
-        peek_location = algorithms.algorithm1(problem)
-
-        is_peak = problem.isPeak(peek_location)
-
-        self.assertEqual(True, is_peak)
-        self.assertEqual(1, problem.get(peek_location))
-        self.assertEqual((0, 0), peek_location)
+        size = (1, 1)
+        expected_value = 1
+        expected_location = (0, 0)
+        self.runPeak(grid, size, expected_value, expected_location)
 
     def test_002(self):
         """
@@ -30,24 +38,16 @@ class Algo1Tests(unittest.TestCase):
         grid = [
             [2, 2]
         ]
-
-        problem = peak.PeakProblem(grid, (0, 0, 1, 2))
-        peek_location = algorithms.algorithm1(problem)
-        self.assertEqual(2, problem.get(peek_location))
-        is_peak = problem.isPeak(peek_location)
-
-        self.assertEqual(True, is_peak)
-        self.assertEqual((0, 1), peek_location)
+        size = (1, 2)
+        expected_value = 2
+        expected_location = (0, 1)
+        self.runPeak(grid, size, expected_value, expected_location)
 
         grid = [
             [2],
             [2]
         ]
-
-        problem = peak.PeakProblem(grid, (0, 0, 2, 1))
-        peek_location = algorithms.algorithm1(problem)
-        is_peak = problem.isPeak(peek_location)
-
-        self.assertEqual(True, is_peak)
-        self.assertEqual(2, problem.get(peek_location))
-        self.assertEqual((0, 0), peek_location)
+        size = (2, 1)
+        expected_value = 2
+        expected_location = (0, 0)
+        self.runPeak(grid, size, expected_value, expected_location)
