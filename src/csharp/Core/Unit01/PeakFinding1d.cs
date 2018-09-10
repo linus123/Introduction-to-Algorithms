@@ -74,8 +74,7 @@ namespace Core.Unit01
             Array.Copy(data, index, result, 0, length);
             return result;
         }
-
-
+        
         private static int? FindPeekSlow(int[] numbers)
         {
             if (numbers.Length == 1)

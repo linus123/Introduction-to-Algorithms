@@ -17,6 +17,7 @@ namespace Core.Unit01
 
         [Theory(DisplayName = "Should return only value given 1 x 1 grid.")]
         [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
         public void Test001(
             PeakFinding2D.AlgoType algoType)
         {
@@ -35,6 +36,7 @@ namespace Core.Unit01
 
         [Theory(DisplayName = "Should return only value given 2 x 1 and 1 x 2 grid.")]
         [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
         public void Test002(
             PeakFinding2D.AlgoType algoType)
         {
@@ -63,6 +65,7 @@ namespace Core.Unit01
 
         [Theory(DisplayName = "Should return larger value given 2 x 1 and 1 x 2 grid.")]
         [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
         public void Test003(
             PeakFinding2D.AlgoType algoType)
         {
@@ -99,6 +102,7 @@ namespace Core.Unit01
 
         [Theory(DisplayName = "Should return only value given 2 x 2 grid with all the same value.")]
         [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
         public void Test010(
             PeakFinding2D.AlgoType algoType)
         {
@@ -118,6 +122,7 @@ namespace Core.Unit01
 
         [Theory(DisplayName = "Should return only value given 3 x 3 grid with all the same values.")]
         [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
         public void Test012(
             PeakFinding2D.AlgoType algoType)
         {
@@ -138,6 +143,7 @@ namespace Core.Unit01
 
         [Theory(DisplayName = "Should find peak when in center of 3 x 3 grid.")]
         [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
         public void Test013(
             PeakFinding2D.AlgoType algoType)
         {
@@ -155,6 +161,7 @@ namespace Core.Unit01
 
         [Theory(DisplayName = "Should find peak when in x = 0, y = 0 of 3 x 3 grid.")]
         [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
         public void Test014(
             PeakFinding2D.AlgoType algoType)
         {
@@ -172,6 +179,7 @@ namespace Core.Unit01
 
         [Theory(DisplayName = "Should find peak when in x = 1, y = 0 of 3 x 3 grid.")]
         [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
         public void Test015(
             PeakFinding2D.AlgoType algoType)
         {
@@ -182,6 +190,42 @@ namespace Core.Unit01
                 { 3, 4, 1 },
                 { 3, 2, 1 },
                 { 1, 1, 0 }
+            });
+
+            peak.Should().Be(4);
+        }
+
+        [Theory(DisplayName = "Should find peak when in x = 2, y = 0 of 3 x 3 grid.")]
+        [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
+        public void Test016(
+            PeakFinding2D.AlgoType algoType)
+        {
+            var peakFinding2D = new PeakFinding2D(algoType);
+
+            var peak = peakFinding2D.FindPeek(new int[,]
+            {
+                { 1, 3, 4 },
+                { 1, 2, 3 },
+                { 0, 1, 1 }
+            });
+
+            peak.Should().Be(4);
+        }
+
+        [Theory(DisplayName = "Should find peak when in x = 2, y = 0 of 3 x 3 grid.")]
+        [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
+        public void Test017(
+            PeakFinding2D.AlgoType algoType)
+        {
+            var peakFinding2D = new PeakFinding2D(algoType);
+
+            var peak = peakFinding2D.FindPeek(new int[,]
+            {
+                { 0, 1, 1 },
+                { 1, 2, 3 },
+                { 1, 3, 4 },
             });
 
             peak.Should().Be(4);

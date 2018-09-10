@@ -6,7 +6,8 @@
 
         public enum AlgoType
         {
-            BruteForce
+            BruteForce,
+            Algoritim1
         }
 
         public PeakFinding2D(
@@ -17,10 +18,67 @@
 
         public int FindPeek(int[,] array2D)
         {
+            if (_algoType == AlgoType.Algoritim1)
+                return FindPeakAlgo1(array2D);
+
             return FindPeakBruteForce(array2D);
         }
 
-        private static int FindPeakBruteForce(
+        private int FindPeakAlgo1(
+            int[,] array2D)
+        {
+            var grid = new Grid(array2D);
+
+            var middleIndexX = grid.Width / 2;
+
+            var max = int.MinValue;
+            var maxIndexY = 0;
+
+            for (int y = 0; y < grid.Height; y++)
+            {
+                var value = grid.GetValue(middleIndexX, y);
+                if (max < value)
+                {
+                    max = value;
+                    maxIndexY = y;
+                }
+            }
+
+            if (middleIndexX == 0)
+            {
+                return max;
+            }
+
+            var leftValue = grid.GetLeftValue(middleIndexX, maxIndexY);
+            var rightValue = grid.GetRightValue(middleIndexX, maxIndexY);
+
+            if (max >= leftValue && max >= rightValue)
+            {
+                return max;
+            }
+
+            if (leftValue > max)
+            {
+                var subArray = grid.GetSubArray(
+                    0, 0,
+                    middleIndexX, grid.Height);
+
+                return FindPeakAlgo1(subArray);
+            }
+
+            if (rightValue >= max)
+            {
+                var subArray = grid.GetSubArray(
+                    middleIndexX + 1, 0,
+                    grid.Width - middleIndexX - 1, grid.Height);
+
+                return FindPeakAlgo1(subArray);
+            }
+
+            return grid.GetValue(0, 0);
+        }
+
+        private int FindPeakBruteForce(
             int[,] array2D)
         {
             var grid = new Grid(array2D);
@@ -36,89 +94,5 @@
 
             return grid.GetValue(0, 0);
         }
-
-        private class Grid
-        {
-            private readonly int[,] _grid;
-
-            public Grid(
-                int[,] grid)
-            {
-                _grid = grid;
-            }
-
-            public int Height
-            {
-                get { return _grid.GetLength(0); }
-            }
-
-            public int Width
-            {
-                get { return _grid.GetLength(1); }
-            }
-
-            public int GetValue(int x, int y)
-            {
-                return _grid[y, x];
-            }
-
-            private int GetAboveValue(int x, int y)
-            {
-                var adjustedY = y - 1;
-
-                if (adjustedY < 0)
-                {
-                    return GetValue(x, y);
-                }
-
-                return GetValue(x, adjustedY);
-            }
-
-            private int GetBelowValue(int x, int y)
-            {
-                var adjustedY = y + 1;
-
-                if (adjustedY >= Height)
-                {
-                    return GetValue(x, y);
-                }
-
-                return GetValue(x, adjustedY);
-            }
-
-            private int GetLeftValue(int x, int y)
-            {
-                var adjustedX = x - 1;
-
-                if (adjustedX < 0)
-                {
-                    return GetValue(x, y);
-                }
-
-                return GetValue(adjustedX, y);
-            }
-
-            private int GetRightValue(int x, int y)
-            {
-                var adjustedX = x + 1;
-
-                if (adjustedX >= Width)
-                {
-                    return GetValue(x, y);
-                }
-
-                return GetValue(adjustedX, y);
-            }
-
-            public bool IsPeak(
-                int x, int y)
-            {
-                return GetValue(x, y) >= GetAboveValue(x, y)
-                       && GetValue(x, y) >= GetBelowValue(x, y)
-                       && GetValue(x, y) >= GetLeftValue(x, y)
-                       && GetValue(x, y) >= GetRightValue(x, y);
-            }
-        }
-
     }
 }
