@@ -231,5 +231,31 @@ namespace Core.Unit01
             peak.Should().Be(4);
         }
 
+        [Theory(DisplayName = "Should find peak when in x = 2, y = 0 of 3 x 3 grid.")]
+        [InlineData(PeakFinding2D.AlgoType.BruteForce)]
+        [InlineData(PeakFinding2D.AlgoType.Algoritim1)]
+        public void Test018(
+            PeakFinding2D.AlgoType algoType)
+        {
+            var peakFinding2D = new PeakFinding2D(algoType);
+
+            var peak = peakFinding2D.FindPeek(new int[,]
+            {
+                { 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2 },
+                { 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3 },
+                { 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4 },
+                { 7, 8, 9, 10, 11, 10, 9, 8, 7, 6, 5 },
+                { 8, 9, 10, 11, 12, 11, 10, 9, 8, 7, 6 },
+                { 7, 8, 9, 10, 11, 10, 9, 8, 7, 6, 5 },
+                { 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4 },
+                { 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3 },
+                { 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2 },
+                { 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 },
+                { 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0 },
+            });
+
+            peak.Should().Be(12);
+        }
+
     }
 }
